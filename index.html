@@ -18,12 +18,8 @@
     body{background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh;padding-top:72px;-webkit-font-smoothing:antialiased}
 
     /* ===== NAV (auto-hide on scroll) ===== */
-    nav {
-      position: fixed; left: 50%; top: 18px; transform: translateX(-50%);
-      z-index: 120; display:flex; align-items:center; gap:18px; padding:8px 16px;
-      border-radius:999px; transition:transform 270ms ease,opacity 200ms ease;
-      background:transparent;
-    }
+    nav { position: fixed; left: 50%; top: 18px; /* visible position / transform: translateX(-50%); z-index: 120; display:flex; align-items:center; gap:18px; padding:8px 16px; border-radius:999px; transition: top 260ms ease, opacity 200ms ease; background: transparent; } nav.hidden { top: -90px; / hidden above the viewport */ opacity: 0; pointer-events: none; }
+    
     nav.hidden { transform: translate(-50%, -110%); opacity:0; pointer-events:none; }
     .nav-logo{font-family:Syne,serif;font-weight:700;color:var(--text);text-decoration:none;font-size:1.05rem}
     .nav-logo span{color:var(--accent)}
