@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vaishnavi M — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* Minimal theme: light background, charcoal text, calm indigo accent */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --muted: #6b7280;      /* gray-500 */
+  --text: #0f1724;       /* slate-900 */
+  --accent: #2563eb;     /* indigo-600 */
+  --accent-weak: #e6eefc;/* light indigo */
+  --border: #e6e9ef;
+  --shadow: rgba(16,24,40,0.06);
+  --radius-lg: 14px;
+  --radius-md: 8px;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:100;padding:10px 18px;display:flex;align-items:center;gap:20px;
+  background:transparent;border-radius:999px;
+  box-shadow:none;
+}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:18px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:500;padding:6px 8px;border-radius:8px;transition:color 0.15s,background 0.15s}
+.nav-links a:hover{color:var(--accent);background:var(--accent-weak)}
+.nav-cta{background:var(--accent);color:white;padding:8px 12px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:600;box-shadow:0 6px 18px rgba(37,99,235,0.12)}
+.nav-cta:hover{transform:translateY(-1px)}
+
+/* HERO */
+#hero{min-height:72vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem;position:relative}
+.hero-inner{max-width:920px;width:100%;text-align:left;padding:36px;border-radius:var(--radius-lg);background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.6));box-shadow:0 10px 30px var(--shadow)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;padding:6px 12px;border-radius:999px;font-size:0.82rem;color:var(--accent);background:var(--accent-weak);margin-bottom:14px;font-weight:600}
+h1.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2rem,6vw,3.6rem);font-weight:800;line-height:1.02;margin-bottom:8px;color:var(--text)}
+h1.hero-name span{color:var(--accent)}
+.hero-terminal{font-family:monospace;font-size:1rem;color:var(--accent);margin-bottom:14px;min-height:1.2em}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent);margin-left:6px;animation:blink 1s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{font-size:1.02rem;color:var(--muted);max-width:640px;line-height:1.7;margin-bottom:20px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.95rem;display:inline-flex;align-items:center;gap:0.5rem;box-shadow:0 8px 24px rgba(37,99,235,0.12)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.95rem;background:transparent}
+.hero-socials{display:flex;gap:12px;margin-top:22px}
+.social-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:0.9rem}
+.social-link:hover{color:var(--accent)}
+
+/* SECTIONS */
+section{padding:4.5rem 2rem}
+.section-inner{max-width:1000px;margin:0 auto}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase;margin-bottom:0.6rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3.6vw,2.2rem);font-weight:700;margin-bottom:0.6rem;color:var(--text)}
+.section-sub{color:var(--muted);font-size:0.98rem;max-width:640px;margin-bottom:1.8rem}
+.divider{height:1px;background:var(--border);margin-bottom:2.2rem;opacity:1}
+
+/* ABOUT */
+#about{background:transparent}
+.about-grid{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:12px;font-size:0.96rem}
+.about-text p strong{color:var(--text)}
+.about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;box-shadow:0 8px 20px var(--shadow)}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent)}
+.stat-label{font-size:0.86rem;color:var(--muted);margin-top:6px}
+
+/* PROJECTS */
+#projects{background:transparent}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px;transition:transform 0.18s, box-shadow 0.18s}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px var(--shadow)}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.project-tag{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--accent-weak);color:var(--accent);white-space:nowrap}
+.project-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text)}
+.project-desc{color:var(--muted);font-size:0.92rem;line-height:1.6;flex:1}
+.project-metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.metric{background:#f6f9ff;border:1px solid #e9f0ff;border-radius:8px;padding:6px 8px;font-size:0.78rem;color:var(--accent);font-weight:600}
+.project-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.stack-tag{background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:0.78rem;color:var(--muted);font-family:monospace}
+.project-links{display:flex;gap:10px;margin-top:12px}
+.proj-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:600}
+.proj-link:hover{color:var(--accent)}
+
+/* SKILLS */
+#skills{background:transparent}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px}
+.skill-group-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{background:#f6f9ff;border:1px solid #e9f0ff;color:var(--text);border-radius:8px;padding:6px 10px;font-size:0.82rem}
+
+/* EXPERIENCE & CERTS */
+#experience{background:transparent}
+.timeline{display:flex;flex-direction:column;gap:12px}
+.timeline-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;box-shadow:0 10px 30px var(--shadow)}
+.tl-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.tl-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.98rem;color:var(--text)}
+.tl-org{color:var(--muted);font-size:0.9rem}
+.tl-date{font-size:0.82rem;color:var(--muted);background:#f8fafc;border:1px solid var(--border);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.tl-bullets li{color:var(--muted);font-size:0.92rem;padding-left:10px;position:relative}
+
+/* CONTACT */
+#contact{text-align:center}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;margin-top:18px;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 12px 36px var(--shadow)}
+.contact-card p{color:var(--muted);margin-bottom:14px;font-size:0.98rem;line-height:1.7}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:10px}
+.contact-link{display:inline-flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;background:transparent;border:1px solid var(--border);padding:8px 12px;border-radius:8px;font-size:0.9rem;font-weight:600}
+.contact-link:hover{border-color:var(--accent);color:var(--accent)}
+.contact-email{font-size:1rem;color:var(--accent);text-decoration:none;font-weight:700}
+
+/* FOOTER */
+footer{padding:18px 2rem;text-align:center;color:var(--muted);font-size:0.9rem;margin-top:18px}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  nav{left:16px;transform:none}
+  .nav-links{display:none}
+  .projects-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-inner{padding:22px}
+  h1.hero-name{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">VM<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="Vaishnavi_Resume_ATS.docx" download>Resume</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Open to Opportunities</div>
+    <h1 class="hero-name">Vaishnavi <span>M</span></h1>
+    <div class="hero-terminal"><span id="typed"></span><span class="cursor"></span></div>
+    <p class="hero-desc">Final-year CS student at Bangalore Institute of Technology building secure, intelligent systems — from decentralized threat intelligence networks to cloud-deployed health APIs.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#projects">View Projects →</a>
+      <a class="btn-outline" href="#contact">Get in Touch</a>
+    </div>
+    <div class="hero-socials" style="margin-top:18px">
+      <a class="social-link" href="https://github.com/vaishnavim1121" target="_blank" aria-label="GitHub">GitHub</a>
+      <a class="social-link" href="https://linkedin.com/in/vaishnavi-m-18863a286" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+      <a class="social-link" href="mailto:vaishnavim1121@gmail.com" aria-label="Email">Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">CS student who builds things that actually work.</h2>
+    </div>
+    <div class="about-grid reveal" style="margin-top:18px">
+      <div class="about-text">
+        <p>I'm <strong>Vaishnavi M</strong>, a final-year Computer Science student at <strong>Bangalore Institute of Technology</strong> (CGPA 8.9), passionate about building production-grade systems at the intersection of <strong>cybersecurity, AI, and full-stack development</strong>.</p>
+        <p>My work spans decentralized threat intelligence networks using blockchain and federated learning, cloud-deployed REST APIs, and AI-powered tools. I interned at <strong>Threat Prism</strong> where I worked on phishing simulations, Android pen testing, and digital forensics.</p>
+        <p>Currently in placement mode — targeting both <strong>service-based and product companies</strong>, with a niche edge in cybersecurity and applied ML.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">8.9</div><div class="stat-label">CGPA</div></div>
+        <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Projects Built</div></div>
+        <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Security Projects</div></div>
+        <div class="stat-card"><div class="stat-num">2027</div><div class="stat-label">Graduating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">Things I've built</h2>
+      <p class="section-sub">Production-grade projects across cybersecurity, ML, backend systems, and AI tooling.</p>
+    </div>
+    <div class="projects-grid reveal">
+
+      <!-- CTI -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">AI-Powered Decentralized Cyber Threat Intelligence Network</div>
+          <span class="project-tag">Final Year</span>
+        </div>
+        <p class="project-desc">Decentralized CTI sharing platform combining blockchain, federated learning, and XAI (SHAP/LIME). Features ZK Proofs for privacy-preserving sharing and a token economy for cross-org contribution.</p>
+        <div class="project-metrics">
+          <span class="metric">~91% classification accuracy</span>
+          <span class="metric">~40% lower false positives</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span><span class="stack-tag">Blockchain</span><span class="stack-tag">Federated Learning</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/vaishnavim1121" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <!-- EdCare -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">EdCare — Elder Care Health Support System</div>
+          <span class="project-tag">Backend</span>
+        </div>
+        <p class="project-desc">Cloud-deployed REST API for senior citizen health management with a WHO/ICMR rule-based triage engine, JWT auth, caregiver mode, and daily health scoring.</p>
+        <div class="project-metrics">
+          <span class="metric">&lt;350ms API response</span>
+          <span class="metric">50+ symptoms mapped</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Flask</span><span class="stack-tag">MySQL</span><span class="stack-tag">Railway</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/vaishnavim1121/edcare-backend" target="_blank">GitHub</a>
+          <a class="proj-link" href="https://web-production-1leaf1.up.railway.app" target="_blank">Live API</a>
+        </div>
+      </div>
+
+      <!-- NIDS -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">Network Intrusion Detection System (NIDS)</div>
+          <span class="project-tag">ML</span>
+        </div>
+        <p class="project-desc">ANN-based NIDS trained on NSL-KDD dataset detecting DoS, Probe, R2L, and U2R attack categories. Deployed as an interactive Streamlit web app.</p>
+        <div class="project-metrics">
+          <span class="metric">98.2% train accuracy</span>
+          <span class="metric">94.7% test accuracy</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">TensorFlow</span><span class="stack-tag">Streamlit</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/vaishnavim1121" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Blood Bank -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">Blood Bank Availability Management System</div>
+          <span class="project-tag">Web</span>
+        </div>
+        <p class="project-desc">Full-stack app for real-time blood availability tracking with admin and user roles, donor/patient management, and inventory across blood groups.</p>
+        <div class="project-metrics">
+          <span class="metric">&lt;200ms query response</span>
+          <span class="metric">3 user roles</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Flask</span><span class="stack-tag">MySQL</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/vaishnavim1121" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <!-- GrowDesk -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">GrowDesk — AI-Powered Micro-Business Toolkit</div>
+          <span class="project-tag">AI</span>
+        </div>
+        <p class="project-desc">MVP integrating Claude API for idea validation, invoicing, and task management — built for micro-businesses with a freemium model.</p>
+        <div class="project-metrics">
+          <span class="metric">~1.2s AI response</span>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">JS</span><span class="stack-tag">Claude API</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/vaishnavim1121" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">Tech I work with</h2>
+      <p class="section-sub">A mix of languages, frameworks, tools, and concepts built through real projects.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">💻 Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">⚙️ Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Flask</span><span class="skill-tag">Streamlit</span><span class="skill-tag">React</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">🔐 Security</div>
+        <div class="skill-tags">
+          <span class="skill-tag">CTI</span><span class="skill-tag">Pen Testing</span><span class="skill-tag">Forensics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Internship & Certifications</h2>
+    </div>
+    <div class="timeline reveal" style="margin-top:18px">
+      <div class="timeline-item">
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Cyber Security Intern</div>
+            <div class="tl-org">Threat Prism · via 1stop.ai</div>
+          </div>
+          <span class="tl-date">Sep 2025 – Nov 2025</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Designed phishing simulation campaigns to assess user vulnerability.</li>
+          <li>Performed Android application penetration testing (static & dynamic).</li>
+          <li>Conducted digital forensic analysis using Autopsy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="certs-grid reveal" style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+      <div class="cert-card" style="background:var(--surface);border:1px solid var(--border);padding:12px;border-radius:10px">🛡️ <div style="font-weight:700;margin-top:6px">Cyber Security Industrial Program</div><div style="color:var(--muted);font-size:0.88rem">Threat Prism · 2025</div></div>
+      <div class="cert-card" style="background:var(--surface);border:1px solid var(--border);padding:12px;border-radius:10px">🤖 <div style="font-weight:700;margin-top:6px">Claude API Fundamentals</div><div style="color:var(--muted);font-size:0.88rem">Anthropic Academy · In Progress</div></div>
+      <div class="cert-card" style="background:var(--surface);border:1px solid var(--border);padding:12px;border-radius:10px">☁️ <div style="font-weight:700;margin-top:6px">AWS Cloud Practitioner Essentials</div><div style="color:var(--muted);font-size:0.88rem">Amazon Web Services</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's connect</h2>
+    </div>
+    <div class="contact-card reveal" style="margin-top:14px">
+      <p>I'm actively looking for placement opportunities in software development, cybersecurity, and AI/ML. Whether you're a recruiter, a collaborator, or just want to chat — reach out!</p>
+      <a class="contact-email" href="mailto:vaishnavim1121@gmail.com">vaishnavim1121@gmail.com</a>
+      <div class="contact-links" style="margin-top:14px">
+        <a class="contact-link" href="https://linkedin.com/in/vaishnavi-m-18863a286" target="_blank">LinkedIn</a>
+        <a class="contact-link" href="https://github.com/vaishnavim1121" target="_blank">GitHub</a>
+        <a class="contact-link" href="Vaishnavi_Resume_ATS.docx" download>Download Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by <strong>Vaishnavi M</strong> · Bangalore · 2025
+</footer>
+
+<script>
+// Typewriter (kept as-is)
+const phrases = [
+  "CS Engineer. Security Researcher.",
+  "Backend Developer. ML Enthusiast.",
+  "Building secure, intelligent systems.",
+];
+let pi = 0, ci = 0, deleting = false;
+const el = document.getElementById('typed');
+function type() {
+  const phrase = phrases[pi];
+  if (!deleting) {
+    el.textContent = phrase.slice(0, ++ci);
+    if (ci === phrase.length) { deleting = true; setTimeout(type, 1600); return; }
+  } else {
+    el.textContent = phrase.slice(0, --ci);
+    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+  }
+  setTimeout(type, deleting ? 40 : 70);
+}
+type();
+
+// Scroll reveal (kept as-is)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
