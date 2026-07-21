@@ -6,127 +6,7 @@
   <title>Vaishnavi M — Portfolio</title>
   <meta name="description" content="Vaishnavi M — portfolio: cybersecurity, ML, backend & AI projects." />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    /* ===== Base + layout ===== */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --bg:#fafafa; --surface:#fff; --muted:#6b7280; --text:#0f1724; --accent:#2563eb;
-      --border:#e6e9ef; --shadow:rgba(16,24,40,0.06); --radius:12px; --glass:rgba(255,255,255,0.7);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-    }
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh;padding-top:72px;-webkit-font-smoothing:antialiased}
-
-    /* ===== NAV (auto-hide on scroll) ===== */
-    nav { position: fixed; left: 50%; top: 18px; /* visible position / transform: translateX(-50%); z-index: 120; display:flex; align-items:center; gap:18px; padding:8px 16px; border-radius:999px; transition: top 260ms ease, opacity 200ms ease; background: transparent; } nav.hidden { top: -90px; / hidden above the viewport */ opacity: 0; pointer-events: none; }
-    
-    nav.hidden { transform: translate(-50%, -110%); opacity:0; pointer-events:none; }
-    .nav-logo{font-family:Syne,serif;font-weight:700;color:var(--text);text-decoration:none;font-size:1.05rem}
-    .nav-logo span{color:var(--accent)}
-    .nav-links{display:flex;gap:14px;list-style:none}
-    .nav-links a{color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:8px;font-weight:500}
-    .nav-links a:hover{color:var(--accent);background:#eef6ff}
-    .nav-cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:9px;text-decoration:none;font-weight:600}
-
-    /* ===== HERO ===== */
-    #hero{max-width:980px;margin:24px auto 36px;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.65),rgba(255,255,255,0.65));box-shadow:0 10px 30px var(--shadow)}
-    .hero-eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:#f0f6ff;color:var(--accent);font-weight:700;margin-bottom:12px}
-    h1.hero-name{font-family:Syne,serif;font-size:clamp(2rem,5vw,3.2rem);margin:6px 0}
-    .hero-terminal{font-family:monospace;color:var(--accent);min-height:1.2em;margin-bottom:14px}
-    .cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:6px;animation:blink 1s step-end infinite;vertical-align:text-bottom}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-    .hero-desc{color:var(--muted);max-width:72ch;margin-bottom:18px}
-    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-    .link-btn{padding:10px 14px;border-radius:10px;border:1px solid var(--border);text-decoration:none;font-weight:700;background:transparent;color:var(--text)}
-    .link-btn.primary{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(37,99,235,0.12)}
-    .link-btn:hover{transform:translateY(-2px)}
-
-    /* ===== Sections ===== */
-    section{max-width:1000px;margin:32px auto;padding:0 18px}
-    .section-label{font-size:0.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
-    .section-title{font-family:Syne,serif;font-size:1.5rem;margin-bottom:10px}
-    .section-sub{color:var(--muted);margin-bottom:16px}
-
-    /* ===== Projects: tabs + grid + cards ===== */
-    .tabs{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-    .tab{padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:700;color:var(--muted)}
-    .tab.active{background:#eef6ff;border-color:#dceeff;color:var(--accent);box-shadow:0 6px 18px rgba(37,99,235,0.08)}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:transform .18s,box-shadow .18s}
-    .project-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px var(--shadow)}
-    .project-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-    .project-name{font-family:Syne,serif;font-weight:700}
-    .project-tag{font-size:0.72rem;padding:6px 8px;border-radius:999px;background:#f3f7ff;color:var(--accent);font-weight:700}
-    .project-desc{color:var(--muted);font-size:0.92rem}
-    .project-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .stack-tag{background:#fbfdff;border:1px solid #edf5ff;padding:6px 8px;border-radius:8px;font-family:monospace;font-size:0.82rem;color:var(--muted)}
-
-    /* ===== Overlay / project detail ===== */
-    .overlay{position:fixed;inset:0;display:none;z-index:200;align-items:center;justify-content:center;background:rgba(8,12,20,0.45);backdrop-filter:blur(6px);padding:28px;overflow:auto}
-    .overlay.open{display:flex}
-    .panel{background:var(--surface);border-radius:12px;max-width:920px;width:100%;padding:22px;box-shadow:0 30px 80px rgba(8,12,20,0.6);position:relative}
-    .panel .close{position:absolute;right:16px;top:16px;border:0;background:transparent;font-size:1rem;cursor:pointer}
-    .panel-grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
-    .panel-hero{border-radius:10px;overflow:hidden;border:1px solid var(--border);min-height:200px;display:flex;align-items:center;justify-content:center;background:#f8fbff;color:var(--muted)}
-    .panel h2{margin-bottom:8px;font-family:Syne,serif}
-    .panel p{color:var(--muted)}
-    .features{margin-top:12px}
-    .metrics{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .metric{background:#f6f9ff;border:1px solid #e9f0ff;padding:6px 8px;border-radius:8px;color:var(--accent);font-weight:700}
-    .link-row{display:flex;gap:10px;margin-top:14px}
-    .link-btn{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;text-decoration:none;color:var(--text);font-weight:700}
-    .link-btn.primary{background:var(--accent);color:#fff;border-color:transparent}
-
-    /* ===== Small screen adjustments ===== */
-    .tabs{flex-wrap:wrap}
-    .tab{min-width:84px;text-align:center;padding:10px 12px;font-size:0.92rem}
-    @media (max-width:740px){
-      .projects-grid{grid-template-columns:1fr;gap:14px;padding:0 6px}
-      .project-card{padding:14px;border-radius:10px}
-      .project-desc{font-size:0.95rem}
-      .stack-tag{padding:6px 10px;font-size:0.82rem}
-      #hero{margin:12px auto 18px;padding:20px;border-radius:12px}
-      .hero-eyebrow{padding:6px 10px;font-size:0.82rem}
-      h1.hero-name{font-size:1.6rem}
-      .hero-desc{font-size:0.95rem}
-      .hero-btns{gap:8px}
-      body{padding-top:92px}
-    }
-    @media (max-width:880px){
-      .overlay{align-items:flex-start;padding:12px}
-      .panel{width:100%;max-width:100%;padding:18px;border-radius:12px;min-height:100vh;box-shadow:none}
-      .panel-grid{grid-template-columns:1fr;gap:12px}
-      .panel-hero{min-height:180px}
-      .close{right:12px;top:12px;font-size:1.2rem;padding:8px;border-radius:8px;background:rgba(255,255,255,0.06)}
-      .link-row{flex-direction:column;align-items:stretch}
-      .link-btn{width:100%;text-align:center;padding:10px 12px}
-    }
-    @media (max-width:420px){
-      nav{padding:8px 10px;gap:8px;top:12px}
-      .nav-cta{padding:8px 10px;font-size:0.9rem}
-    }
-
-    /* Accessibility / minor fixes */
-    .reveal{opacity:0;transform:translateY(12px);transition:opacity 0.55s ease,transform 0.55s ease}
-    .reveal.visible{opacity:1;transform:none}
-    a{cursor:pointer}
-    html,body{max-width:100%;overflow-x:hidden}
-    /* increase tap area */
-    .link-btn, .tab, .proj-link, .contact-link, .nav-cta { touch-action:manipulation; -webkit-tap-highlight-color:rgba(0,0,0,0); }
-    /* category details cards */
-#categoryDetails .detail-card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px;
-  box-shadow:0 12px 30px var(--shadow);
-}
-#categoryDetails .detail-card h4{font-family:Syne,serif;margin-bottom:6px}
-#categoryDetails .detail-card .meta{color:var(--muted);font-size:0.95rem;margin-bottom:8px}
-#categoryDetails .detail-card .feat-list{color:var(--muted);margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
-#categoryDetails .detail-card .feat-pill{background:#f6f9ff;border:1px solid #e9f0ff;padding:6px 8px;border-radius:8px;color:var(--accent);font-weight:700;font-size:0.85rem}
-#categoryDetails .detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -161,10 +41,10 @@
     <h2 class="section-title">CS student who builds things that actually work.</h2>
     <p class="section-sub">I build production-grade systems at the intersection of cybersecurity, AI, and full-stack development.</p>
     <div style="display:grid;grid-template-columns:1fr 300px;gap:20px">
-      <div style="color:var(--muted)">I'm Vaishnavi M — final-year CS student at Bangalore Institute of Technology (CGPA 8.5). I interned at Threat Prism working on phishing simulations, Android pentesting, and forensics. Currently placement-ready with a focus on security and applied ML.</div>
+      <div style="color:var(--muted)">I'm Vaishnavi M — final-year CS student at Bangalore Institute of Technology (CGPA 8.9). I interned at Threat Prism working on phishing simulations, Android pentesting, and forensics. Currently placement-ready with a focus on security and applied ML.</div>
       <div style="display:grid;gap:10px">
         <div style="background:var(--surface);padding:12px;border-radius:10px;border:1px solid var(--border);text-align:center">
-          <div style="font-family:Syne,serif;font-weight:800;color:var(--accent)">8.5</div>
+          <div style="font-family:Syne,serif;font-weight:800;color:var(--accent)">8.9</div>
           <div style="color:var(--muted)">CGPA</div>
         </div>
         <div style="background:var(--surface);padding:12px;border-radius:10px;border:1px solid var(--border);text-align:center">
@@ -196,14 +76,6 @@
           <div class="project-name">AI-Powered Decentralized CTI Network</div>
           <div class="project-tag">Final Year</div>
         </div>
-        <!-- CATEGORY DETAILS (appears when a category tab is clicked) -->
-<section id="categoryDetails" class="reveal" style="display:none;margin-top:26px;">
-  <div class="section-label" id="categoryLabel">Category</div>
-  <h3 class="section-title" id="categoryTitle"></h3>
-  <p id="categoryIntro" class="section-sub" style="margin-bottom:14px;color:var(--muted)"></p>
-
-  <div id="categoryContent" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px"></div>
-</section>
         <p class="project-desc">CTI sharing using blockchain, federated learning and XAI. ZK proofs and token incentives for privacy-preserving contributions.</p>
         <div class="project-stack">
           <span class="stack-tag">Python</span><span class="stack-tag">Blockchain</span><span class="stack-tag">Federated Learning</span>
@@ -254,6 +126,16 @@
         </div>
       </article>
     </div>
+
+    <!-- CATEGORY DETAILS (appears when a category tab is clicked) -->
+    <section id="categoryDetails" class="reveal" style="display:none;margin-top:26px;">
+      <div class="section-label" id="categoryLabel">Category</div>
+      <h3 class="section-title" id="categoryTitle"></h3>
+      <p id="categoryIntro" class="section-sub" style="margin-bottom:14px;color:var(--muted)"></p>
+
+      <div id="categoryContent" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px"></div>
+    </section>
+
   </section>
 
   <!-- SKILLS -->
@@ -294,7 +176,7 @@
 
   <footer style="text-align:center;padding:22px;color:var(--muted)">Built by <strong>Vaishnavi M</strong> · Bangalore · 2025</footer>
 
-  <!-- ===== Project detail overlay (modal) ===== -->
+  <!-- Project detail overlay (modal) -->
   <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="panel" role="document" aria-labelledby="panel-title">
       <button class="close" id="closeBtn" aria-label="Close project view">✕</button>
@@ -327,174 +209,232 @@
     </div>
   </div>
 
-  <script>
-    /* ===== Typewriter ===== */
-    const phrases = ["CS Engineer. Security Researcher.","Backend Developer. ML Enthusiast.","Building secure, intelligent systems."];
-    let pi = 0, ci = 0, deleting = false;
-    const typedEl = document.getElementById('typed');
-    function type(){
-      const p = phrases[pi];
-      if(!deleting){ typedEl.textContent = p.slice(0, ++ci); if(ci === p.length){ deleting = true; setTimeout(type, 1400); return; } }
-      else { typedEl.textContent = p.slice(0, --ci); if(ci === 0){ deleting = false; pi = (pi+1) % phrases.length; } }
-      setTimeout(type, deleting ? 40 : 70);
+<script>
+/* ========== Typewriter ========== */
+const phrases = ["CS Engineer. Security Researcher.","Backend Developer. ML Enthusiast.","Building secure, intelligent systems."];
+let pi = 0, ci = 0, deleting = false;
+const typedEl = document.getElementById('typed');
+function type(){
+  const p = phrases[pi];
+  if(!deleting){ typedEl.textContent = p.slice(0, ++ci); if(ci === p.length){ deleting = true; setTimeout(type, 1400); return; } }
+  else { typedEl.textContent = p.slice(0, --ci); if(ci === 0){ deleting = false; pi = (pi+1) % phrases.length; } }
+  setTimeout(type, deleting ? 40 : 70);
+}
+type();
+
+/* ========== Scroll reveal (IntersectionObserver) ========== */
+try {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('section, main, .project-card').forEach(el => observer.observe(el));
+} catch (e) {
+  // if IntersectionObserver fails, fall back to showing everything
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}
+
+/* ========== NAV hide-on-scroll (robust) ========== */
+let lastScrollY = window.scrollY;
+const navEl = document.getElementById('nav');
+let rafPending = false;
+const DELTA = 12;
+function onScroll() {
+  if (rafPending) return;
+  rafPending = true;
+  window.requestAnimationFrame(() => {
+    const currentY = window.scrollY;
+    const diff = currentY - lastScrollY;
+    if (currentY <= 60) {
+      navEl.classList.remove('hidden');
+    } else if (diff > DELTA) {
+      navEl.classList.add('hidden');
+    } else if (diff < -DELTA) {
+      navEl.classList.remove('hidden');
     }
-    type();
+    lastScrollY = currentY;
+    rafPending = false;
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
 
-    /* ===== Scroll reveal (simple) ===== */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('section, main, .project-card').forEach(el => observer.observe(el));
+/* ========== Projects data ========== */
+const projectsData = {
+  cti: {
+    id:'cti',
+    title:'AI-Powered Decentralized CTI Network',
+    subtitle:'Blockchain + Federated Learning + XAI',
+    desc:'Decentralized CTI sharing platform combining immutable ledgers, federated learning to protect raw data, and explainability (SHAP/LIME). Privacy-preserving ZK proofs and token incentives enable safe cross-org collaboration.',
+    features:['Privacy-preserving indicator sharing (ZK proofs)','Federated learning pipeline for cross-org models','Explainability layer (SHAP/LIME)','Tokenized contribution & reputation system'],
+    metrics:['~91% classifier accuracy','~40% lower false positives','<2s consensus latency'],
+    stack:['Python','PyTorch','Smart Contracts','Docker','Kubernetes'],
+    links:{github:'https://github.com/vaishnavim1121', live:''},
+    hero:'(add image URL here)'
+  },
+  edcare: {
+    id:'edcare',
+    title:'EdCare — Elder Care Health API',
+    subtitle:'Cloud-deployed REST API with triage engine',
+    desc:'Production-grade REST API for senior health management with a WHO/ICMR rule-based triage engine, JWT-based auth, caregiver access, and daily scoring. Deployed on Railway with MySQL backend.',
+    features:['WHO/ICMR rule-based triage','Caregiver & patient roles','Daily health scoring & alerts','Secure JWT auth'],
+    metrics:['<350ms API response','50+ symptoms mapped','20+ endpoints'],
+    stack:['Python','Flask','MySQL','Docker','Railway'],
+    links:{github:'https://github.com/vaishnavim1121/edcare-backend', live:'https://web-production-1leaf1.up.railway.app'},
+    hero:'(add image URL here)'
+  },
+  nids: {
+    id:'nids',
+    title:'Network Intrusion Detection System',
+    subtitle:'ANN-based NIDS deployed as a Streamlit app',
+    desc:'ANN model trained on NSL-KDD to detect DoS, Probe, R2L, and U2R categories. The model is exposed via a Streamlit front-end for interactive exploration and demonstration.',
+    features:['ANN classifier for multi-class attacks','Interactive Streamlit demo','Preprocessing & feature engineering for NSL-KDD'],
+    metrics:['98.2% train accuracy','94.7% test accuracy','F1: 0.93 | <0.3s latency'],
+    stack:['TensorFlow','Keras','Streamlit','scikit-learn'],
+    links:{github:'https://github.com/vaishnavim1121', live:''},
+    hero:'(add image URL here)'
+  },
+  blood: {
+    id:'blood',
+    title:'Blood Bank Availability System',
+    subtitle:'Real-time inventory & request management',
+    desc:'Full-stack system for tracking blood inventory, donor/patient management, and request fulfillment across multiple centers. Role-based access for admins, donors and hospital users.',
+    features:['Real-time inventory across groups','Donor & patient workflows','Request tracking & notifications'],
+    metrics:['<200ms query response','3 user roles','6 blood groups supported'],
+    stack:['Flask','MySQL','HTML/CSS','XAMPP'],
+    links:{github:'https://github.com/vaishnavim1121', live:''},
+    hero:'(add image URL here)'
+  },
+  growdesk: {
+    id:'growdesk',
+    title:'GrowDesk — AI Micro-Business Toolkit',
+    subtitle:'Claude API for idea validation & invoicing',
+    desc:'MVP integrating Claude API for idea validation, invoicing and task management — built for micro-businesses with a freemium model.',
+    features:['AI-driven idea validation','Invoice generation','Task & client management'],
+    metrics:['~1.2s AI response'],
+    stack:['HTML','CSS','JavaScript','Claude API'],
+    links:{github:'https://github.com/vaishnavim1121', live:''},
+    hero:'(add image URL here)'
+  }
+};
 
-    /* ===== NAV hide-on-scroll ===== */
-    let lastScroll = window.scrollY;
-    const nav = document.getElementById('nav');
-    let ticking = false;
-    window.addEventListener('scroll', ()=> {
-      if(ticking) return;
-      window.requestAnimationFrame(()=> {
-        const y = window.scrollY;
-        if(y > lastScroll + 12 && y > 80) nav.classList.add('hidden');
-        else if(y < lastScroll - 12) nav.classList.remove('hidden');
-        lastScroll = y;
-        ticking = false;
-      });
-      ticking = true;
+/* ========== Overlay (detail modal) ========== */
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('closeBtn');
+
+function openProject(id, push=true){
+  const data = projectsData[id];
+  if(!data) return;
+  document.getElementById('panel-title').textContent = data.title;
+  document.getElementById('panel-sub').textContent = data.subtitle || '';
+  document.getElementById('panel-desc').textContent = data.desc || '';
+  const feats = document.getElementById('panel-features'); feats.innerHTML = '';
+  (data.features||[]).forEach(f=>{ const li = document.createElement('li'); li.textContent = f; feats.appendChild(li); });
+  const metrics = document.getElementById('panel-metrics'); metrics.innerHTML='';
+  (data.metrics||[]).forEach(m=>{ const s = document.createElement('div'); s.className='metric'; s.textContent=m; metrics.appendChild(s); });
+  const stackEl = document.getElementById('panel-stack'); stackEl.innerHTML='';
+  (data.stack||[]).forEach(sx=> { const el = document.createElement('div'); el.className='stack-tag'; el.textContent = sx; stackEl.appendChild(el); });
+  const linksRow = document.getElementById('panel-links'); linksRow.innerHTML='';
+  if(data.links?.github){ const a = document.createElement('a'); a.href=data.links.github; a.target='_blank'; a.className='link-btn'; a.textContent='GitHub'; linksRow.appendChild(a); }
+  if(data.links?.live){ const b = document.createElement('a'); b.href=data.links.live; b.target='_blank'; b.className='link-btn primary'; b.textContent='Live'; linksRow.appendChild(b); }
+  document.getElementById('panel-hero').textContent = data.hero || 'No image yet — add a screenshot URL in projectsData';
+  overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  closeBtn.focus();
+  if(push) history.pushState({project:id}, '', '#project-'+id);
+}
+
+function closeProject(push=true){
+  overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  if(push) history.pushState('', document.title, window.location.pathname + window.location.search);
+}
+
+/* ========== Wire up project cards (only one declaration) ========== */
+const cards = Array.from(document.querySelectorAll('.project-card'));
+cards.forEach(card => {
+  card.addEventListener('click', ()=> openProject(card.dataset.id, true));
+  card.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(card.dataset.id, true); } });
+});
+closeBtn.addEventListener('click', ()=> closeProject(true));
+overlay.addEventListener('click', (e)=> { if(e.target === overlay) closeProject(true); });
+window.addEventListener('keydown', (e)=> { if(e.key === 'Escape' && overlay.classList.contains('open')) closeProject(true); });
+
+/* ========== Tabs: filter cards + category details ========== */
+const tabs = document.querySelectorAll('.tab');
+
+function showCategoryDetails(filter){
+  const section = document.getElementById('categoryDetails');
+  const titleEl = document.getElementById('categoryTitle');
+  const intro = document.getElementById('categoryIntro');
+  const content = document.getElementById('categoryContent');
+
+  if(!filter || filter === 'all'){
+    section.style.display = 'none';
+    return;
+  }
+
+  const matchingCards = Array.from(document.querySelectorAll(`.project-card[data-categories*="${filter}"]`))
+    .filter(c => c.style.display !== 'none');
+
+  if(matchingCards.length === 0){
+    section.style.display = 'none';
+    return;
+  }
+
+  const categoryName = filter.charAt(0).toUpperCase() + filter.slice(1);
+  titleEl.textContent = categoryName + ' Projects';
+  intro.textContent = `Below are the ${categoryName.toLowerCase()} projects with descriptions, features, metrics and links. Click "Open Details" for the full project view.`;
+
+  content.innerHTML = '';
+
+  matchingCards.forEach(card => {
+    const id = card.dataset.id;
+    const p = projectsData[id];
+    if(!p) return;
+
+    const div = document.createElement('div');
+    div.className = 'detail-card';
+    div.innerHTML = `
+      <h4>${p.title}</h4>
+      <div class="meta">${p.subtitle || ''}</div>
+      <p style="color:var(--muted)">${p.desc || ''}</p>
+      <div class="feat-list">${(p.features || []).map(f => `<span class="feat-pill">${f}</span>`).join('')}</div>
+      <div class="metrics" style="margin-top:10px">${(p.metrics || []).map(m => `<span class="metric" style="display:inline-block;margin-right:8px;padding:6px 8px;border-radius:8px;background:#f8fbff;color:var(--accent);border:1px solid #e9f0ff;font-weight:700">${m}</span>`).join('')}</div>
+      <div class="detail-actions">
+        ${p.links?.github ? `<a class="link-btn" href="${p.links.github}" target="_blank">GitHub</a>` : ''}
+        ${p.links?.live ? `<a class="link-btn primary" href="${p.links.live}" target="_blank">Live</a>` : ''}
+        <button class="link-btn" onclick="openProject('${p.id}')">Open Details</button>
+      </div>
+    `;
+    content.appendChild(div);
+  });
+
+  section.style.display = 'block';
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', ()=> {
+    tabs.forEach(t=>{ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+    const filter = tab.dataset.filter;
+
+    cards.forEach(c=>{
+      const cats = c.dataset.categories.split(',').map(s=>s.trim());
+      c.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
     });
 
-    /* ===== Tabs: filter cards ===== */
-    const tabs = document.querySelectorAll('.tab');
-    const cards = Array.from(document.querySelectorAll('.project-card'));
-    tabs.forEach(tab => {
-      tab.addEventListener('click', ()=> {
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-        tab.classList.add('active'); tab.setAttribute('aria-selected','true');
-        const filter = tab.dataset.filter;
-        cards.forEach(c => {
-          const cats = c.dataset.categories.split(',').map(s => s.trim());
-          c.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
-        });
-      });
-    });
+    showCategoryDetails(filter);
+  });
+});
 
-    /* ===== Projects data for detail overlay ===== */
-    const projectsData = {
-      cti: {
-        id:'cti',
-        title:'AI-Powered Decentralized CTI Network',
-        subtitle:'Blockchain + Federated Learning + XAI',
-        desc:'Decentralized CTI sharing platform combining immutable ledgers, federated learning to protect raw data, and explainability (SHAP/LIME). Privacy-preserving ZK proofs and token incentives enable safe cross-org collaboration.',
-        features:['Privacy-preserving indicator sharing (ZK proofs)','Federated learning pipeline for cross-org models','Explainability layer (SHAP/LIME)','Tokenized contribution & reputation system'],
-        metrics:['~91% classification accuracy','~40% lower false positives','<2s consensus latency'],
-        stack:['Python','PyTorch','Smart Contracts','Docker','Kubernetes'],
-        links:{github:'https://github.com/vaishnavim1121', live:''},
-        hero:'(add image URL here)'
-      },
-      edcare: {
-        id:'edcare',
-        title:'EdCare — Elder Care Health API',
-        subtitle:'Cloud-deployed REST API with triage engine',
-        desc:'Production REST API for senior health management with a WHO/ICMR rule-based triage engine, JWT auth, caregiver access, and daily scoring. Deployed on Railway with MySQL backend.',
-        features:['WHO/ICMR rule-based triage','Caregiver & patient roles','Daily health scoring & alerts','Secure JWT auth'],
-        metrics:['<350ms API response','50+ symptoms mapped','20+ endpoints'],
-        stack:['Python','Flask','MySQL','Docker','Railway'],
-        links:{github:'https://github.com/vaishnavim1121/edcare-backend', live:'https://web-production-1leaf1.up.railway.app'},
-        hero:'(add image URL here)'
-      },
-      nids: {
-        id:'nids',
-        title:'Network Intrusion Detection System',
-        subtitle:'ANN-based NIDS deployed as a Streamlit app',
-        desc:'ANN model trained on NSL-KDD detecting multiple attack classes. Interactive Streamlit demo for exploration and evaluation.',
-        features:['ANN classifier','Interactive Streamlit demo','Preprocessing & feature engineering'],
-        metrics:['98.2% train accuracy','94.7% test accuracy','F1: 0.93 | <0.3s latency'],
-        stack:['TensorFlow','Keras','Streamlit','scikit-learn'],
-        links:{github:'https://github.com/vaishnavim1121', live:''},
-        hero:'(add image URL here)'
-      },
-      blood: {
-        id:'blood',
-        title:'Blood Bank Availability System',
-        subtitle:'Real-time inventory & request management',
-        desc:'Full-stack system for tracking inventory, donor/patient flows, and request fulfilment across centers. Role-based access for admins, donors and hospitals.',
-        features:['Real-time inventory across groups','Donor & patient workflows','Request tracking & notifications'],
-        metrics:['<200ms query response','3 user roles','6 blood groups supported'],
-        stack:['Flask','MySQL','HTML/CSS','XAMPP'],
-        links:{github:'https://github.com/vaishnavim1121', live:''},
-        hero:'(add image URL here)'
-      },
-      growdesk: {
-        id:'growdesk',
-        title:'GrowDesk — AI Micro-Business Toolkit',
-        subtitle:'Claude API for idea validation & invoicing',
-        desc:'MVP integrating Claude API for idea validation, invoicing and task management tailored for micro-businesses with a freemium path.',
-        features:['AI-driven idea validation','Invoice generation','Task & client management'],
-        metrics:['~1.2s AI response'],
-        stack:['HTML','CSS','JavaScript','Claude API'],
-        links:{github:'https://github.com/vaishnavim1121', live:''},
-        hero:'(add image URL here)'
-      }
-    };
+/* ========== deep-link handling ========== */
+window.addEventListener('popstate', ()=>{
+  const hash = location.hash;
+  if(hash.startsWith('#project-')) openProject(hash.replace('#project-',''), false);
+  else closeProject(false);
+});
+if(location.hash.startsWith('#project-')) window.addEventListener('load', ()=> openProject(location.hash.replace('#project-',''), false));
 
-    /* ===== Overlay behavior ===== */
-    const overlay = document.getElementById('overlay');
-    const closeBtn = document.getElementById('closeBtn');
-
-    function openProject(id, push=true){
-      const data = projectsData[id];
-      if(!data) return;
-      document.getElementById('panel-title').textContent = data.title;
-      document.getElementById('panel-sub').textContent = data.subtitle || '';
-      document.getElementById('panel-desc').textContent = data.desc || '';
-      const feats = document.getElementById('panel-features'); feats.innerHTML = '';
-      (data.features||[]).forEach(f => { const li = document.createElement('li'); li.textContent = f; feats.appendChild(li); });
-      const metrics = document.getElementById('panel-metrics'); metrics.innerHTML = '';
-      (data.metrics||[]).forEach(m => { const s = document.createElement('div'); s.className='metric'; s.textContent=m; metrics.appendChild(s); });
-      const stack = document.getElementById('panel-stack'); stack.innerHTML = '';
-      (data.stack||[]).forEach(sx => { const el = document.createElement('div'); el.className='stack-tag'; el.textContent = sx; stack.appendChild(el); });
-      const linksRow = document.getElementById('panel-links'); linksRow.innerHTML = '';
-      if(data.links?.github){ const a = document.createElement('a'); a.href=data.links.github; a.target='_blank'; a.className='link-btn'; a.textContent='GitHub'; linksRow.appendChild(a); }
-      if(data.links?.live){ const b = document.createElement('a'); b.href=data.links.live; b.target='_blank'; b.className='link-btn primary'; b.textContent='Live'; linksRow.appendChild(b); }
-      const hero = document.getElementById('panel-hero'); hero.textContent = data.hero || 'No image yet — add a screenshot URL in projectsData';
-      overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';         // prevent background scroll while modal open
-      closeBtn.focus();
-      if(push) history.pushState({project:id}, '', '#project-'+id);
-    }
-
-    function closeProject(push=true){
-      overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';               // restore background scroll
-      if(push) history.pushState('', document.title, window.location.pathname + window.location.search);
-    }
-
-    /* hook up clicks & keyboard */
-    const cards = Array.from(document.querySelectorAll('.project-card'));
-    cards.forEach(card => {
-      card.addEventListener('click', ()=> openProject(card.dataset.id, true));
-      card.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(card.dataset.id, true); } });
-    });
-    closeBtn.addEventListener('click', ()=> closeProject(true));
-    overlay.addEventListener('click', (e)=> { if(e.target === overlay) closeProject(true); });
-    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape' && overlay.classList.contains('open')) closeProject(true); });
-
-    /* popstate deep-linking */
-    window.addEventListener('popstate', ()=> {
-      const hash = location.hash;
-      if(hash.startsWith('#project-')){ openProject(hash.replace('#project-',''), false); }
-      else { closeProject(false); }
-    });
-    if(location.hash.startsWith('#project-')){ window.addEventListener('load', ()=> openProject(location.hash.replace('#project-',''), false)); }
-
-    /* prevent focus loss when modal opened (simple) */
-    // (For a full focus trap use a library; this is a light-weight approach)
-    overlay.addEventListener('keydown', (e)=> {
-      if(e.key === 'Tab'){ /* allow normal tabbing inside modal; minimal trapping omitted for brevity */ }
-    });
-
-    /* ===== Accessibility helpers ===== */
-    // Make sure project cards remain keyboard accessible (role/listitem + tabindex=0 included above)
-
-  </script>
+</script>
 </body>
 </html>
