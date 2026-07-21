@@ -113,6 +113,19 @@
     html,body{max-width:100%;overflow-x:hidden}
     /* increase tap area */
     .link-btn, .tab, .proj-link, .contact-link, .nav-cta { touch-action:manipulation; -webkit-tap-highlight-color:rgba(0,0,0,0); }
+    /* category details cards */
+#categoryDetails .detail-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  box-shadow:0 12px 30px var(--shadow);
+}
+#categoryDetails .detail-card h4{font-family:Syne,serif;margin-bottom:6px}
+#categoryDetails .detail-card .meta{color:var(--muted);font-size:0.95rem;margin-bottom:8px}
+#categoryDetails .detail-card .feat-list{color:var(--muted);margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+#categoryDetails .detail-card .feat-pill{background:#f6f9ff;border:1px solid #e9f0ff;padding:6px 8px;border-radius:8px;color:var(--accent);font-weight:700;font-size:0.85rem}
+#categoryDetails .detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
   </style>
 </head>
 <body>
