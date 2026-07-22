@@ -92,6 +92,25 @@
           <span class="stack-tag">Flask</span><span class="stack-tag">MySQL</span><span class="stack-tag">Railway</span>
         </div>
       </article>
+      <article class="project-card" data-id="phishguard" data-categories="security,ml,web" role="listitem" tabindex="0" aria-label="Open PhishGuard AI Phishing Detection">
+  <div class="project-header">
+    <div class="project-name">PhishGuard — AI Phishing Detection Extension</div>
+    <div class="project-tag">Security</div>
+  </div>
+
+  <p class="project-desc">
+    AI-powered browser extension that detects phishing websites in real time
+    using a Random Forest machine learning model and provides instant security
+    warnings.
+  </p>
+
+  <div class="project-stack">
+    <span class="stack-tag">Python</span>
+    <span class="stack-tag">Flask</span>
+    <span class="stack-tag">Random Forest</span>
+    <span class="stack-tag">JavaScript</span>
+  </div>
+</article>
 
       <article class="project-card" data-id="nids" data-categories="ml,security" role="listitem" tabindex="0" aria-label="Open Network Intrusion Detection System">
         <div class="project-header">
@@ -281,6 +300,45 @@ const projectsData = {
     links:{github:'https://github.com/vaishnavim1121/edcare-backend', live:'https://web-production-1leaf1.up.railway.app'},
     hero:'(add image URL here)'
   },
+  phishguard: {
+    id:'phishguard',
+    title:'PhishGuard — AI Phishing Detection Browser Extension',
+    subtitle:'Machine Learning + Cybersecurity',
+    desc:'An AI-powered browser extension that detects phishing websites in real time using a Random Forest machine learning model. The extension analyzes URL features and communicates with a Flask REST API to classify websites as legitimate or malicious before users interact with them.',
+
+    features:[
+        'Real-time phishing website detection',
+        'Random Forest ML model trained on phishing datasets',
+        'URL feature extraction and classification',
+        'Flask REST API for prediction',
+        'Instant browser security alerts',
+        'Chrome Extension integration'
+    ],
+
+    metrics:[
+        'Real-time URL Analysis',
+        'REST API Integration',
+        'Machine Learning Classification'
+    ],
+
+    stack:[
+        'Python',
+        'Flask',
+        'Scikit-learn',
+        'Random Forest',
+        'JavaScript',
+        'HTML',
+        'CSS',
+        'Chrome Extension API'
+    ],
+
+    links:{
+        github:'https://github.com/vaishnavim1121',
+        live:'https://phishguard-2-riq9.onrender.com'
+    },
+
+    hero:'AI-Powered Browser Extension'
+},
   nids: {
     id:'nids',
     title:'Network Intrusion Detection System',
