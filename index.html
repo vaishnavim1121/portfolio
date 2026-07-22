@@ -498,7 +498,17 @@ tabs.forEach(tab => {
     showCategoryDetails(filter);
   });
 });
+const resumeBtn = document.getElementById("resumeBtn");
+const resumeMenu = document.getElementById("resumeMenu");
 
+resumeBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resumeMenu.classList.toggle("show");
+});
+
+document.addEventListener("click", () => {
+    resumeMenu.classList.remove("show");
+});
 /* ========== deep-link handling ========== */
 window.addEventListener('popstate', ()=>{
   const hash = location.hash;
